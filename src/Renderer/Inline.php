@@ -143,7 +143,8 @@ class Inline extends AbstractRenderer
                 $w += (float)$child_w;
             }
 
-            $h = max($h, $child_h, $child_h2);
+            $hValues = [$h, $child_h, $child_h2];
+            $h = max(array_filter($hValues, fn($val) => is_numeric($val)));
 
             if ($do_debug_layout_line) {
                 $this->_debug_layout($child->get_border_box(), "blue");
